@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amckennafoster.github.io/samplefigshareapi.github.io/workshop/sample-create-item-schema.json",
+  "required": [
+            "title"
+        ], 
+  "properties": {
+            "title": {
+                "type": "string", 
+                "description": "Title of article", 
+                "minLength": 5, 
+                "example": "Test article title"
+            }, 
+            "description": {
+                "type": "string", 
+                "description": "The article description. In a publisher case, usually this is the remote article description", 
+                "default": "", 
+                "example": "Test description of article"
+            }, 
+            "tags": {
+                "type": "array", 
+                "items": {
+                    "type": "string"
+                }, 
+                "default": [], 
+                "example": [
+                    "tag1", 
+                    "tag2"
+                ]
+            }, 
+            "references": {
+                "type": "array", 
+                "items": {
+                    "type": "string", 
+                    "format": "link"
+                }, 
+                "description": "List of links to be associated with the article (e.g [\"http://link1\", \"http://link2\", \"http://link3\"])", 
+                "default": [], 
+                "example": [
+                    "http://figshare.com", 
+                    "http://api.figshare.com"
+                ]
+            }, 
+            "categories": {
+                "type": "array", 
+                "items": {
+                    "type": "integer", 
+                    "format": "int64"
+                }, 
+                "description": "List of category ids to be associated with the article(e.g [1, 23, 33, 66])", 
+                "default": [], 
+                "example": [
+                    1, 
+                    10, 
+                    11
+                ]
+            }, 
+            "authors": {
+                "type": "array", 
+                "items": {
+                    "type": "object"
+                }, 
+                "description": "List of authors to be assosciated with the article. The list can contain author ids or author names. No more than 10 authors. For adding more authors use the specific authors endpoint.", 
+                "default": [], 
+                "example": [
+                    {
+                        "name": "John Doe"
+                    }, 
+                    {
+                        "id": 1000008
+                    }
+                ]
+            }, 
+            "custom_fields": {
+                "type": "object", 
+                "description": "List of key, values pairs to be associated with the article", 
+                "example": {
+                    "defined_key": "value for it"
+                }
+            }, 
+            "defined_type": {
+                "type": "string", 
+                "enum": [
+                    "figure", 
+                    "media", 
+                    "dataset", 
+                    "fileset", 
+                    "poster", 
+                    "paper", 
+                    "presentation", 
+                    "thesis", 
+                    "code", 
+                    "metadata"
+                ], 
+                "description": "The response will contain an integer which is mapped to these types as: 1 - Figure, 2 - Media, 3 - Dataset, 4 - Fileset, 5 - Poster, 6 - Paper, 7 - Presentation, 8 - Thesis, 9 - Code, 11 - Metadata, 12 - Preprint",
+                "example": "media"
+            }, 
+            "funding": {
+                "type": "string", 
+                "description": "Grant number or funding authority", 
+                "default": ""
+            }, 
+            "license": {
+                "type": "integer", 
+                "format": "int64", 
+                "description": "License id for this article.", 
+                "default": 0, 
+                "example": 1
+            }, 
+            "doi": {
+                "type": "string", 
+                "description": "Not appliable for regular users. In an institutional case, make sure your group supports setting DOIs. This setting is applied by figshare via opening a ticket through our support/helpdesk system.", 
+                "default": ""
+            }, 
+            "resource_doi": {
+                "type": "string", 
+                "description": "Not applicable to regular users. In a publisher case, this is the publisher article DOI.", 
+                "default": ""
+            }, 
+            "resource_title": {
+                "type": "string", 
+                "description": "Not applicable to regular users. In a publisher case, this is the publisher article title.", 
+                "default": ""
+            }
+        }
+    }
